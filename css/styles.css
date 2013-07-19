@@ -1,0 +1,26 @@
+/* Reset padding and margin */
+/* inline-block hack */
+/* Box Sizing */
+.clearfix {
+  zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+/* Collumn */
+/* border radius */
+/* Border-radius Custom */
+/* box-shadow */
+/* Text-shadow */
+/* transition */
+/* transform (rotate, scale, skew, translate */
+/* gradient *//* quick-gradient */
+/* reflection */
+/* filter */
+/* FlexBox
+=================================================================== */

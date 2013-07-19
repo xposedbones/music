@@ -1,0 +1,251 @@
+@import "_lesshat.less";
+
+/* Reset padding and margin */
+.resetPM(){
+	padding: 0;
+	margin: 0;
+}
+
+.bgkAlpha(@color: #000000, @a:1){
+	@p: @a*100;
+	background-color: @color;
+	background-color: fade(@color,@p);	
+}
+/* inline-block hack */
+.inline-block(){
+    display: inline-block;
+    .ie8 &, .ie7 &{
+        zoom:1;
+        *display:inline;
+    }
+   
+}
+// Size handler
+.size(@w:10px, @h: 10px){
+    width: @w;
+    height: @h;
+}
+.square(@w:10px){
+    width: @w;
+    height: @w;
+}
+// font handler
+.font(@name:'Arial',@weight:'400', @fallback: "helvetica, sans-serif"){
+	font-family: @name, @fallback;
+	font-weight:@weight;
+}
+
+/* Box Sizing */
+	.box-sizing(@mode: border-box){
+		box-sizing:@mode;
+		-moz-box-sizing:@mode; /* Firefox */
+		-webkit-box-sizing:@mode; /* Safari */
+	}
+
+.clearfix {
+  zoom: 1;
+	&:before, &:after { content: ""; display: table; }
+	&:after { clear: both; }
+}
+/* Collumn */
+.col(@nbCol:3,@gutter: 20px, @width:989px){
+	@totalWidth:@width;
+	@nth:~"@{nbCol}n+1";
+	
+	width: (@totalWidth - (@gutter * (@nbCol - 1))) / @nbCol;
+	margin-left: @gutter;
+	margin-bottom: @gutter;
+	float:left;
+	&:first-child{
+		margin-left: 0px;
+	}
+	&:nth-child(@nth){
+		margin-left:0px;
+	}
+}
+
+.anchorPoint(@x: left, @y: top){
+	transform-origin: @x @y;
+	-webkit-transform-origin: @x @y;
+	-moz-transform-origin: @x @y;
+	-ms-transform-origin: @x @y;
+	-o-transform-origin: @x @y;
+}
+
+.opacity(@alpha: 0.5){
+	@test: @alpha * 100;
+	opacity: @alpha;
+	-moz-opacity: @alpha;
+	-khtml-opacity: @alpha;
+	-webkit-opacity: @alpha;
+	
+		-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{test}')";
+	filter: alpha(opacity=@test);
+}
+
+
+.colorize_bg(@color: @white, @alpha: 1) {
+           background: hsla(hue(@color), saturation(@color), lightness(@color), @alpha);}
+
+/* border radius */
+	.border-radius (@radius: 5px) {
+		-webkit-border-radius: @radius;
+		-moz-border-radius: @radius;
+		border-radius: @radius;
+	}
+
+/* Border-radius Custom */
+	.border-radius-custom (@topleft: 5px, @topright: 5px, @bottomleft: 5px, @bottomright: 5px) {
+		-webkit-border-radius: @topleft @topright @bottomright @bottomleft;
+		-moz-border-radius: @topleft @topright @bottomright @bottomleft;
+		border-radius: @topleft @topright @bottomright @bottomleft;
+	}
+
+/* box-shadow */
+	.boxshadow (@x: 0px, @y: 3px, @blur: 5px, @spread: 0px, @alpha: 0.5) {
+		-webkit-box-shadow: @x @y @blur @spread rgba(0, 0, 0, @alpha);
+		-moz-box-shadow: @x @y @blur @spread rgba(0, 0, 0, @alpha);
+		box-shadow: @x @y @blur @spread rgba(0, 0, 0, @alpha);
+	}
+	.boxshadow-none () {
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+	}
+
+	.box-shadow-hex (@x: 0px, @y: 3px, @blur: 5px, @color: #000) {
+		-webkit-box-shadow: @x @y @blur @color;
+		-moz-box-shadow: @x @y @blur @color;
+		box-shadow: @x @y @blur @color;
+	}
+
+	.box-shadow-in (@x: 0px, @y: 3px, @blur: 5px, @spread:0 , @alpha: 0.5) {
+		-webkit-box-shadow:inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+		-moz-box-shadow:inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+		box-shadow:inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+	}
+	.box-shadow-in-hex (@x: 0px, @y: 3px, @blur: 5px, @spread:0 , @color: #000) {
+		-webkit-box-shadow:inset @x @y @blur @spread @color;
+		-moz-box-shadow:inset @x @y @blur @spread @color;
+		box-shadow:inset @x @y @blur @spread @color;
+	}
+	.box-shadow-in-white (@x: 0px, @y: 3px, @blur: 5px, @spread:0 , @alpha: 0.5) {
+		-webkit-box-shadow:inset @x @y @blur @spread rgba(255,255,255, @alpha);
+		-moz-box-shadow:inset @x @y @blur @spread rgba(255,255,255, @alpha);
+		box-shadow:inset @x @y @blur @spread rgba(255,255,255, @alpha);
+	}
+
+/* Text-shadow */
+	.text-shadow (@x: 0px, @y: 1px, @blur: 1px, @color: #000) {
+		text-shadow: @x @y @blur @color;
+		filter: dropshadow(color=@color, offx=@x, offy=@y);
+	}
+
+/* transition */
+	.transition (@prop: all, @time: 1s, @ease: linear) {
+		-webkit-transition: @prop @time @ease;
+		-moz-transition: @prop @time @ease;
+		-o-transition: @prop @time @ease;
+		-ms-transition: @prop @time @ease;
+		transition: @prop @time @ease;
+	}
+
+/* transform (rotate, scale, skew, translate */
+	.transform (@rotate: 90deg, @scale: 1, @skew: 1deg, @translate: 10px) {
+		-webkit-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+		-moz-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+		-o-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+		-ms-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+		transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+	}
+	
+	.rotate(@angle: -10deg, @anchor: middle middle){
+		transform: rotate(@angle);
+		transform-origin:@anchor;
+		-ms-transform: rotate(@angle); /* IE 9 */
+		-ms-transform-origin:@anchor; /* IE 9 */
+		-webkit-transform: rotate(@angle); /* Safari and Chrome */
+		-webkit-transform-origin:@anchor; /* Safari and Chrome */
+		-moz-transform: rotate(@angle); /* Firefox */
+		-moz-transform-origin:@anchor; /* Firefox */
+		-o-transform: rotate(@angle); /* Opera */
+		-o-transform-origin:@anchor; /* Opera */
+
+	}
+
+/* gradient */ //REQUIRE LESSHAT
+	.gradient (@origin: left, @start: #ffffff, @stop: #000000) {
+		// @gradientType: 1;
+		// @gradientType: ~`if( @origin==="top" ) {return 0}`;
+
+		background-color: @start;
+		.gradient-hat(~"linear-gradient(@{origin}, @{start} 0%, @{stop} 100%)");
+		background-image: -webkit-linear-gradient(@origin, @start, @stop);
+		background-image: -moz-linear-gradient(@origin, @start, @stop);
+		background-image: -o-linear-gradient(@origin, @start, @stop);
+		background-image: -ms-linear-gradient(@origin, @start, @stop);
+		background-image: linear-gradient(@origin, @start, @stop);
+		// filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=@start, endColorstr=@stop,GradientType=0);
+		  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@start,@stop));
+		  .ie9 &{filter:none;}
+	}
+ 
+/* quick-gradient */
+	.quick-gradient (@origin: left, @alpha: 0.2) {
+		background-image: -webkit-linear-gradient(@origin, rgba(0,0,0,0.0), rgba(0,0,0,@alpha));
+		background-image: -moz-linear-gradient(@origin, rgba(0,0,0,0.0), rgba(0,0,0,@alpha));
+		background-image: -o-linear-gradient(@origin, rgba(0,0,0,0.0), rgba(0,0,0,@alpha));
+		background-image: -ms-linear-gradient(@origin, rgba(0,0,0,0.0), rgba(0,0,0,@alpha));
+		background-image: linear-gradient(@origin, rgba(0,0,0,0.0), rgba(0,0,0,@alpha));
+	}
+	.quick-gradient-white (@origin: left, @alpha: 0.2) {
+		background-image: -webkit-linear-gradient(@origin, rgba(255,255,255,0.0), rgba(255,255,255,@alpha));
+		background-image: -moz-linear-gradient(@origin, rgba(255,255,255,0.0), rgba(255,255,255,@alpha));
+		background-image: -o-linear-gradient(@origin, rgba(255,255,255,0.0), rgba(255,255,255,@alpha));
+		background-image: -ms-linear-gradient(@origin, rgba(255,255,255,0.0), rgba(255,255,255,@alpha));
+		background-image: linear-gradient(@origin, rgba(255,255,255,0.0), rgba(255,255,255,@alpha));
+	}
+
+	.quick-gradient-custom (@origin: left, @color-start: #000, @color-end: #000) {
+		background-image: -webkit-linear-gradient(@origin, fade(@color-start,100%), fade(@color-end, 0%));
+		background-image: -moz-linear-gradient(@origin, fade(@color-start,100%), fade(@color-end, 0%));
+		background-image: -o-linear-gradient(@origin, fade(@color-start,100%), fade(@color-end, 0%));
+		background-image: -ms-linear-gradient(@origin, fade(@color-start,100%), fade(@color-end, 0%));
+		background-image: linear-gradient(@origin, fade(@color-start,100%), fade(@color-end, 0%));
+	}
+ 
+/* reflection */
+	.reflect (@length: 50%, @opacity: 0.2){
+		-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(@length, transparent), to(rgba(255,255,255,@opacity)));
+	}
+
+/* filter */
+	.wFilter(@filter: blur,@amount: 5px){
+		-webkit-filter: @filter(@amount);
+	}
+
+
+/* FlexBox
+=================================================================== */
+	.flex-Box(@align:center,@orient:vertical,@pack:center){
+			display: -webkit-box;
+				display: -moz-box;
+				display: -o-box;
+				display: -ms-box;
+				display: box;
+				-webkit-box-align:@align;
+				-webkit-box-orient:@orient;
+				-webkit-box-pack: @pack;
+				-moz-box-align: @align;
+				-moz-box-orient: @orient;
+				-moz-box-pack: @pack;
+				-o-box-align:@align;
+				-o-box-orient:@orient;
+				-o-box-pack: @pack;
+				-ms-box-align:@align;
+				-ms-box-orient:@orient;
+				-ms-box-pack: @pack;
+				box-align:@align;
+				box-orient:@orient;
+				box-pack: @pack;
+	}
