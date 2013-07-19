@@ -1,3 +1,8 @@
+<?php 
+if(!class_exists("Bd")){
+	include('config.php');
+}
+?>
 <!doctype html>
 <html lang="en">
 <head>
