@@ -14,13 +14,12 @@ if(!class_exists("Bd")){
 <body>
 
 <header class="clearfix">
-	<input type="checkbox" name="" id="show_form">
-	<label for="show_form"><a id="upload">
-		<i class="icon-upload"></i> Upload </a>
-		<div>
-		<?php include(INC."upload-form.php"); ?>
-		</div>
-	</label>
+	<a id="upload">	<i class="icon-upload"></i> Upload </a>
+	
+	<div class="form_holder">
+	<?php include(INC."upload-form.php"); ?>
+	</div>
+	
 
 
 	<ul>
