@@ -8,12 +8,12 @@ if(!class_exists("Bd")){
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,700,600' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/styles.css">
-	
 </head>
 <body>
-<header>
-	<div><a href="#" class="icon-upload">Upload </a></div>
+<header class="clearfix">
+	<a href="#"id="upload"><span class="icon-upload"></span>Upload</a>
 	<ul>
 		<li><a href="#">My stuff</a></li>
 		<li><a href="#">Browse</a></li>
