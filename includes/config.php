@@ -7,7 +7,7 @@
 	DEFINE("sUSER", "root");		// username
 	DEFINE("sPWD", "");
 
-	include_once(LIBS.'class.bd.php');
-	global $bd;
+// 	include_once(INC."bd.php");
+// $bd->connect();
 	//$bd->connect();
 ?>
