@@ -12,15 +12,13 @@ if(!class_exists("Bd")){
 	<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<<<<<<< HEAD
-<header>
-	<div><a href="#" class="icon-upload">Upload </a>
+
+<header class="clearfix">
+	<div><a href="#"id="upload"><i class="icon-upload"></i> Upload </a>
 	<?php include(INC."upload-form.php"); ?>
 	</div>
-=======
-<header class="clearfix">
-	<a href="#"id="upload"><span class="icon-upload"></span>Upload</a>
->>>>>>> 7ca13b4299da162db35388538a182d73fef05340
+
+
 	<ul>
 		<li><a href="#">My stuff</a></li>
 		<li><a href="#">Browse</a></li>
