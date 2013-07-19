@@ -182,7 +182,8 @@ class Bd{
 	/*Function Result (Return the result of the query)*/
 	function result($type="O"){
 		switch($type){
-			case"a":
+			case"a": 
+			case "A":
 				while($l[]=mysql_fetch_assoc($this->r)){
 				}
 				array_pop($l);
@@ -201,6 +202,11 @@ class Bd{
 		
 
 		return $l;
+	}
+
+	function resultr($r, $type="O"){
+		$this->loadr($r);
+		return $this->result($type);
 	}
 	
 	function insert($args){
@@ -253,6 +259,8 @@ class Bd{
 			$array_vals=array();
 			$vals="";
 			$cols = $col_temp;
+
+			//print_r($copied[$k]);
 			foreach($copied[$k] as $entry => $val){
 				$array_vals[]=mysql_real_escape_string($val);
 			}
@@ -300,7 +308,14 @@ class Bd{
 			$cols.="`".$entry."`='".mysql_real_escape_string($val)."', ";	
 		}
 		foreach($where as $wh => $where_elem){
+			if(in_array($where_elem["condition"],array("LIKE"))){
+				$where_elem["condition"] = " ".$where_elem["condition"]." ";
+			}
+			if($where_elem["condition"]=="IN"||$where_elem["condition"]=="in"){
+				$where_r.="".$wh." ".$where_elem["condition"]." ".mysql_real_escape_string($where_elem["value"])." AND ";
+			}else{
 			$where_r.="`".$wh."`".$where_elem["condition"]."'".mysql_real_escape_string($where_elem["value"])."' AND ";	
+			}
 		}
 		
 		$cols = substr($cols, 0, -2);
@@ -327,12 +342,30 @@ class Bd{
 		$cols="";
 		
 		foreach($where as $wh => $where_elem){
-			$where_r.="".$wh.$where_elem["condition"]."'".$where_elem["value"]."' AND ";	
+			if(in_array($where_elem["condition"],array("LIKE"))){
+				$where_elem["condition"] = " ".$where_elem["condition"]." ";
+			}
+			if($where_elem["condition"]=="IN"||$where_elem["condition"]=="in"){
+				$where_r.="".$wh." ".$where_elem["condition"]." ".$where_elem["value"]." AND ";
+			}else{
+				$where_r.="".$wh.$where_elem["condition"]."'".$where_elem["value"]."' AND ";
+			}	
 		}
 		
 		$cols = substr($cols, 0, -2);
 		$where_r = substr($where_r, 0, -5);
 		
+		$elemid=array();
+		if(!empty($get_deleted_ids)){
+			$r= 'SELECT '.$get_deleted_ids["field"].' FROM `'.$table.'` WHERE '.$where_r;
+			$bd->loadr($r);
+			$elem = $bd->result();
+			foreach ($elem as $e) {
+				$elemid[]=$e->{$get_deleted_ids["field"]};
+			}
+		}
+
+
 		$r = 'DELETE FROM `'.$table.'` WHERE '.$where_r;
 
 		$bd->query($r);
@@ -342,7 +375,7 @@ class Bd{
 		$id = mysql_insert_id();
 		$error = mysql_errno();
 		
-		return array("id"=>$id, "error"=>$error);
+		return array("id"=>$id, "error"=>$error, "ids"=>$elemid);
 		
 	}
 	
