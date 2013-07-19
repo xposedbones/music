@@ -10,6 +10,8 @@
  * http://www.opensource.org/licenses/MIT
  */
 
+ini_set("gd.jpeg_ignore_warning", 1);
+
 class UploadHandler
 {
     protected $options;
