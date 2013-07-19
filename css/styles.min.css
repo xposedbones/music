@@ -1,1 +1,1 @@
-.clearfix{zoom:1}.clearfix:before,.clearfix:after{content:"";display:table}.clearfix:after{clear:both}.bar{height:18px;background:green}
+body:before{white-space:pre;font-family:monospace;content:'Less ParseError: Syntax Error on line 7 in C:\\wamp\\www\\music\\css\\less\\styles.less:7:0 \A 6  \A 7 <<<<<<< HEAD \A 8 .bar { \A  \A '}body *{display:none}
