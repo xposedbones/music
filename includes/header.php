@@ -15,15 +15,19 @@ if(!class_exists("Bd")){
 
 <header class="clearfix">
 	<a id="upload">	<i class="icon-upload"></i> Upload </a>
-	
+	<div class="span5 fileupload-progress fade">
+        <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+            <div class="bar" style="width:0%;"></div>
+        </div>
+    </div>
 	<div class="form_holder">
 	<?php include(INC."upload-form.php"); ?>
 	</div>
 	
 
 
-	<ul>
-		<li><a href="#">My stuff</a></li>
+	<ul id="menu">
+		<li><a href="test.php">My stuff</a></li>
 		<li><a href="#">Browse</a></li>
 		<li><a href="#">Meh</a></li>
 	</ul>

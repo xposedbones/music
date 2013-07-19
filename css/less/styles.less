@@ -28,6 +28,12 @@
 =================================================================== */
 	header{
 		height: 50px;
+		.transition(all,0.1s);
+		&.uploading{
+			padding-top:5px;
+			height: 55px;
+			#upload,ul li{line-height: 45px;}
+		}
 		text-align: justify;
 		background: #fafafa;
 		a{ color: #444; .text-shadow(0px,1px,0px,white)}
@@ -46,14 +52,51 @@
 				position: absolute;
 				left: 20px;
 			}
+			
 			&:hover:before{color: #999;}
 		}
 		ul{
 			float: right;
+			margin: 0;
 			margin-right: 20px;
-			li{ display: inline-block;}
+
+			li{ display: inline-block; line-height: 50px}
 		}
-		
+		.form_holder{
+			display:none;
+			position:absolute;
+			top: 50px;
+			padding:10px 20px;
+			background: #cacaca;
+			border-top:1px solid white;
+			.quick-gradient-white(bottom,0.7);
+			width: 100%;
+			z-index:10;
+			input{
+				float: left;
+			}
+			#dropzone{
+				width:100%;
+				height: 400px;
+				
+				margin-top: 20px;
+				.border-radius(50px);
+				border: 5px dashed #bbb;
+				.box-shadow-in(0px,-2px,1px,0,0.3);
+
+			}
+		}
+		.fileupload-progress{
+			position: absolute;
+			z-index: 50;
+			display:none;
+			width: 100%;
+			top: 0;
+			background: #dadada;
+			border-bottom:1px solid #d0d0d0;
+
+		}
+		.bar{height:5px; z-index:11; background: @green;}
 	}
 
 /* Album-listing
@@ -84,10 +127,10 @@
 				width: 40px;
 				height: 128px;
 				padding-top: 10px;
-				background: #ff691b;
+				background: @green;
 				text-align: center;
 				a{
-					.text-shadow(0px,0px,10px,lighten(#ff691b,20%));
+					.text-shadow(0px,0px,10px,lighten(@green,20%));
 					color: white;
 					font-size: 25px;
 					display:inline-block;

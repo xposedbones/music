@@ -386,6 +386,7 @@ table {
   font-style: normal;
 }
 /* Use the following CSS code if you want to use data attributes for inserting your icons */
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
 [data-icon]:before {
   font-family: 'music';
   content: attr(data-icon);
@@ -404,7 +405,8 @@ you can use the generic selector below, but it's slower:
 */
 .icon-upload,
 .icon-download,
-.icon-info {
+.icon-info,
+.icon-checkmark {
   font-family: 'music';
   speak: none;
   font-style: normal;
@@ -422,6 +424,9 @@ you can use the generic selector below, but it's slower:
 }
 .icon-info:before {
   content: "\e001";
+}
+.icon-checkmark:before {
+  content: "\e003";
 }
 /* body
 =================================================================== */
@@ -446,6 +451,16 @@ a {
 =================================================================== */
 header {
   height: 50px;
+  -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  -o-transition: all 0.1s;
+  -ms-transition: all 0.1s;
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s linear;
+  -moz-transition: all 0.1s linear;
+  -o-transition: all 0.1s linear;
+  -ms-transition: all 0.1s linear;
+  transition: all 0.1s linear;
   text-align: justify;
   background: #fafafa;
   background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
@@ -453,6 +468,14 @@ header {
   background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
   background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
   background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+}
+header.uploading {
+  padding-top: 5px;
+  height: 55px;
+}
+header.uploading #upload,
+header.uploading ul li {
+  line-height: 45px;
 }
 header a {
   color: #444;
@@ -480,10 +503,59 @@ header #upload:hover:before {
 }
 header ul {
   float: right;
+  margin: 0;
   margin-right: 20px;
 }
 header ul li {
   display: inline-block;
+  line-height: 50px;
+}
+header .form_holder {
+  display: none;
+  position: absolute;
+  top: 50px;
+  padding: 10px 20px;
+  background: #cacaca;
+  border-top: 1px solid white;
+  background-image: -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7));
+  background-image: -moz-linear-gradient(bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7));
+  background-image: -o-linear-gradient(bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7));
+  background-image: -ms-linear-gradient(bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7));
+  background-image: linear-gradient(bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7));
+  width: 100%;
+  z-index: 10;
+}
+header .form_holder input {
+  float: left;
+}
+header .form_holder #dropzone {
+  width: 100%;
+  height: 400px;
+  margin-top: 20px;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  border: 5px dashed #bbb;
+  -webkit-box-shadow: inset 0px -2px 1px 0 rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: inset 0px -2px 1px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0px -2px 1px 0 rgba(0, 0, 0, 0.3);
+}
+header .fileupload-progress {
+  position: absolute;
+  z-index: 50;
+  display: none;
+  width: 100%;
+  top: 0;
+  background: #dadada;
+  border-bottom: 1px solid #d0d0d0;
+}
+header .bar {
+  height: 5px;
+  z-index: 11;
+  background: #6cf100;
 }
 /* Album-listing
 =================================================================== */
@@ -540,12 +612,12 @@ header ul li {
   width: 40px;
   height: 128px;
   padding-top: 10px;
-  background: #ff691b;
+  background: #6cf100;
   text-align: center;
 }
 #album-listing ul li .controls a {
-  text-shadow: 0px 0px 10px #ffac81;
-  filter: dropshadow(color=#ffac81, offx=0px, offy=0px);
+  text-shadow: 0px 0px 10px #a3ff58;
+  filter: dropshadow(color=#a3ff58, offx=0px, offy=0px);
   color: white;
   font-size: 25px;
   display: inline-block;
