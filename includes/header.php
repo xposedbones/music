@@ -8,6 +8,7 @@ if(!class_exists("Bd")){
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,700,600' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/styles.css">
 </head>
@@ -28,7 +29,7 @@ if(!class_exists("Bd")){
 
 	<ul id="menu">
 		<li><a href="test.php">My stuff</a></li>
-		<li><a href="#">Browse</a></li>
+		<li><a href="albums-listing.php">Browse</a></li>
 		<li><a href="#">Meh</a></li>
 	</ul>
 </header>

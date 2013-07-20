@@ -82,6 +82,8 @@ html {
   /* 1 */
 
   -ms-text-size-adjust: 100%;
+  /* 2 */
+
   -webkit-text-size-adjust: 100%;
   /* 2 */
 
@@ -385,7 +387,12 @@ table {
   font-weight: normal;
   font-style: normal;
 }
-/* Use the following CSS code if you want to use data attributes for inserting your icons */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: 'music';
+    src: url('fonts/music.svg#music') format('svg');
+  }
+}
 /* Use the following CSS code if you want to use data attributes for inserting your icons */
 [data-icon]:before {
   font-family: 'music';
@@ -403,6 +410,8 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
+.icon-love,
+.icon-loved,
 .icon-upload,
 .icon-download,
 .icon-info,
@@ -416,17 +425,23 @@ you can use the generic selector below, but it's slower:
   line-height: 1;
   -webkit-font-smoothing: antialiased;
 }
-.icon-upload:before {
+.icon-love:before {
   content: "\e000";
 }
-.icon-download:before {
-  content: "\e002";
-}
-.icon-info:before {
+.icon-loved:before {
   content: "\e001";
 }
-.icon-checkmark:before {
+.icon-upload:before {
+  content: "\e002";
+}
+.icon-download:before {
   content: "\e003";
+}
+.icon-info:before {
+  content: "\e004";
+}
+.icon-checkmark:before {
+  content: "\e005";
 }
 /* body
 =================================================================== */
@@ -483,6 +498,7 @@ header a {
   filter: dropshadow(color=#ffffff, offx=0px, offy=1px);
 }
 header #upload {
+  cursor: pointer;
   line-height: 50px;
   display: block;
   float: left;
@@ -498,8 +514,8 @@ header #upload .icon-upload:before {
   position: absolute;
   left: 20px;
 }
-header #upload:hover:before {
-  color: #999;
+header #upload:hover i.icon-upload:before {
+  color: #777;
 }
 header ul {
   float: right;
@@ -559,11 +575,16 @@ header .bar {
 }
 /* Album-listing
 =================================================================== */
+#album-listing ul {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
 #album-listing ul li {
   display: block;
   float: left;
-  text-align: center;
-  margin: 15px;
+  width: 128px;
+  height: 128px;
   position: relative;
   overflow: hidden;
   -webkit-transition: all 0.1s;
@@ -576,26 +597,12 @@ header .bar {
   -o-transition: all 0.1s linear;
   -ms-transition: all 0.1s linear;
   transition: all 0.1s linear;
-  opacity: 0.8;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
   color: ;
 }
-#album-listing ul li:hover {
-  opacity: 1;
-}
-#album-listing ul li:hover .controls {
-  left: 0;
-}
 #album-listing ul li img {
-  display: block;
-}
-#album-listing ul li span {
-  display: block;
-  color: white;
-}
-#album-listing ul li .controls {
   -webkit-transition: all 0.1s;
   -moz-transition: all 0.1s;
   -o-transition: all 0.1s;
@@ -606,26 +613,159 @@ header .bar {
   -o-transition: all 0.1s linear;
   -ms-transition: all 0.1s linear;
   transition: all 0.1s linear;
+}
+#album-listing ul li:hover .controls {
+  left: 0;
+}
+#album-listing ul li:hover img {
+  -webkit-transform: 0;
+  -moz-transform: 0;
+  -o-transform: 0;
+  -ms-transform: 0;
+  transform: 0;
+  -webkit-transform: rotate(0) scale(0.9) skew(0) translate(0);
+  -moz-transform: rotate(0) scale(0.9) skew(0) translate(0);
+  -o-transform: rotate(0) scale(0.9) skew(0) translate(0);
+  -ms-transform: rotate(0) scale(0.9) skew(0) translate(0);
+  transform: rotate(0) scale(0.9) skew(0) translate(0);
+  -webkit-filter: blur(5px);
+}
+#album-listing ul li:hover .info {
+  -webkit-transform: 0;
+  -moz-transform: 0;
+  -o-transform: 0;
+  -ms-transform: 0;
+  transform: 0;
+  -webkit-transform: rotate(0) scale(1) skew(0) translate(0);
+  -moz-transform: rotate(0) scale(1) skew(0) translate(0);
+  -o-transform: rotate(0) scale(1) skew(0) translate(0);
+  -ms-transform: rotate(0) scale(1) skew(0) translate(0);
+  transform: rotate(0) scale(1) skew(0) translate(0);
+  opacity: 1;
+  -webkit-filter: blur(0px);
+}
+#album-listing ul li img {
+  display: block;
+}
+#album-listing ul li span {
+  display: block;
+  color: white;
+}
+#album-listing ul li .info {
+  -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  -o-transition: all 0.1s;
+  -ms-transition: all 0.1s;
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s linear;
+  -moz-transition: all 0.1s linear;
+  -o-transition: all 0.1s linear;
+  -ms-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+  -webkit-filter: blur(2px);
+  position: absolute;
+  opacity: 0;
+  width: 128px;
+  height: 128px;
+  z-index: 50;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: table;
+  -webkit-transform: 0;
+  -moz-transform: 0;
+  -o-transform: 0;
+  -ms-transform: 0;
+  transform: 0;
+  -webkit-transform: rotate(0) scale(1.5) skew(0) translate(0);
+  -moz-transform: rotate(0) scale(1.5) skew(0) translate(0);
+  -o-transform: rotate(0) scale(1.5) skew(0) translate(0);
+  -ms-transform: rotate(0) scale(1.5) skew(0) translate(0);
+  transform: rotate(0) scale(1.5) skew(0) translate(0);
+}
+#album-listing ul li .info div.info_holder {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+#album-listing ul li .info div.info_holder span {
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  filter: dropshadow(color=rgba(0, 0, 0, 0.5), offx=0px, offy=0px);
+}
+#album-listing ul li .info div.info_holder span.artist {
+  font-size: 13px;
+}
+#album-listing ul li .info div.info_holder span.album-name {
+  font-size: 16px;
+}
+#album-listing ul li .info div.controls {
   position: absolute;
   top: 0;
-  left: -40px;
-  width: 40px;
-  height: 128px;
-  padding-top: 10px;
-  background: #6cf100;
-  text-align: center;
-}
-#album-listing ul li .controls a {
-  text-shadow: 0px 0px 10px #a3ff58;
-  filter: dropshadow(color=#a3ff58, offx=0px, offy=0px);
-  color: white;
-  font-size: 25px;
+  left: 0;
+  margin: 0;
+  padding: 0;
   display: inline-block;
+  text-align: justify;
+  width: 128px;
+  padding: 10px;
 }
-#album-listing ul li .controls a:hover {
-  color: #4e4e4e;
+#album-listing ul li .info div.controls a {
+  display: inline-block;
+  color: #ccc;
+  font-size: 1.2em;
 }
-#album-listing ul li .controls a.icon-download {
-  margin-top: 55px;
-  font-size: 32px;
+#album-listing ul li .info div.controls a:hover {
+  color: white;
+}
+#album-listing ul li .info div.controls a span {
+  display: none;
+}
+#album-listing ul li .info div.controls a.icon-love,
+#album-listing ul li .info div.controls a.icon-loved {
+  font-size: 1.3em;
+}
+#album-listing ul li .info div.controls a.icon-download {
+  font-size: 1.5em;
+}
+#album-listing ul li .info div.controls:after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+}
+#album-listing li.huge {
+  height: 512px;
+  width: 512px;
+}
+#album-listing li.huge .info {
+  height: 512px;
+  width: 512px;
+}
+#album-listing li.huge .info div.controls {
+  width: 512px;
+}
+#album-listing li.huge .info div.info_holder span.artist {
+  font-size: 37px;
+  font-weight: 300;
+}
+#album-listing li.huge .info div.info_holder span.album-name {
+  font-size: 80px;
+  font-weight: 300;
+}
+#album-listing li.med {
+  height: 256px;
+  width: 256px;
+}
+#album-listing li.med .info {
+  height: 256px;
+  width: 256px;
+}
+#album-listing li.med .info div.controls {
+  width: 256px;
+}
+#album-listing li.med .info div.info_holder span.artist {
+  font-size: 20px;
+  font-weight: 300;
+}
+#album-listing li.med .info div.info_holder span.album-name {
+  font-size: 38px;
+  font-weight: 300;
 }

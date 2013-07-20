@@ -8,7 +8,7 @@ if($site_url[0]!=="fr" && $site_url[0]!=="en"){
 }else{
 	DEFINE("SITELANG", $site_url[0]);
 }
-
+error_reporting(0);
 if(isset($_GET["lang"]) && ($_GET["lang"]==="en_US" || $_GET["lang"]==="fr_FR")){
 	$locale=$_GET["lang"];	
 }
@@ -40,7 +40,7 @@ if(isset($_GET["lang"]) && ($_GET["lang"]==="en_US" || $_GET["lang"]==="fr_FR"))
 DEFINE("LOCALE_LANG", $locale);
 DEFINE("LOCALE_COUNTRY", $local_country);
 
-define('PROJECT_DIR', $_SERVER[DOCUMENT_ROOT]);
+define('PROJECT_DIR', $_SERVER['DOCUMENT_ROOT']);
 define('LOCALE_DIR', PROJECT_DIR .'/local');
 define('DEFAULT_LOCALE', 'en_US');
 

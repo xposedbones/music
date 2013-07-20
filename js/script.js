@@ -1,4 +1,10 @@
 $(function($) {
+	$("#album-listing ul").isotope({
+		   masonry: {
+			    columnWidth: 128
+			  }
+	});
+	
 	$("#upload").click(function(){
 		$('.form_holder').slideToggle();
 	});

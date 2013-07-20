@@ -9,7 +9,13 @@
 	font-style: normal;
 }
 
-/* Use the following CSS code if you want to use data attributes for inserting your icons */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    @font-face {
+        font-family: 'music';
+        src: url('fonts/music.svg#music') format('svg');
+    }
+}
+
 /* Use the following CSS code if you want to use data attributes for inserting your icons */
 [data-icon]:before {
 	font-family: 'music';
@@ -28,7 +34,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-upload, .icon-download, .icon-info, .icon-checkmark {
+.icon-love, .icon-loved, .icon-upload, .icon-download, .icon-info, .icon-checkmark {
 	font-family: 'music';
 	speak: none;
 	font-style: normal;
@@ -38,15 +44,21 @@ you can use the generic selector below, but it's slower:
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 }
-.icon-upload:before {
+.icon-love:before {
 	content: "\e000";
 }
-.icon-download:before {
-	content: "\e002";
-}
-.icon-info:before {
+.icon-loved:before {
 	content: "\e001";
 }
-.icon-checkmark:before {
+.icon-upload:before {
+	content: "\e002";
+}
+.icon-download:before {
 	content: "\e003";
+}
+.icon-info:before {
+	content: "\e004";
+}
+.icon-checkmark:before {
+	content: "\e005";
 }

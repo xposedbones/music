@@ -48,21 +48,21 @@
 	&:after { clear: both; }
 }
 /* Collumn */
-.col(@nbCol:3,@gutter: 20px, @width:989px){
-	@totalWidth:@width;
-	@nth:~"@{nbCol}n+1";
+// .col(@nbCol:3,@gutter: 20px, @width:989px){
+// 	@totalWidth:@width;
+// 	@nth:~"@{nbCol}n+1";
 	
-	width: (@totalWidth - (@gutter * (@nbCol - 1))) / @nbCol;
-	margin-left: @gutter;
-	margin-bottom: @gutter;
-	float:left;
-	&:first-child{
-		margin-left: 0px;
-	}
-	&:nth-child(@nth){
-		margin-left:0px;
-	}
-}
+// 	width: (@totalWidth - (@gutter * (@nbCol - 1))) / @nbCol;
+// 	margin-left: @gutter;
+// 	margin-bottom: @gutter;
+// 	float:left;
+// 	&:first-child{
+// 		margin-left: 0px;
+// 	}
+// 	&:nth-child(@nth){
+// 		margin-left:0px;
+// 	}
+// }
 
 .anchorPoint(@x: left, @y: top){
 	transform-origin: @x @y;

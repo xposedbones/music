@@ -14,8 +14,10 @@
 
 /* structure
 =================================================================== */
+
 /* apply a natural box layout model to all elements */
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
 /* typo
 =================================================================== */
 	//Book 300
@@ -39,6 +41,7 @@
 		a{ color: #444; .text-shadow(0px,1px,0px,white)}
 		.quick-gradient(top,0.2);
 		#upload{
+			cursor:pointer;
 			line-height: 50px;
 			display:block;
 			float: left;
@@ -53,7 +56,7 @@
 				left: 20px;
 			}
 			
-			&:hover:before{color: #999;}
+			&:hover i.icon-upload:before{color: #777;}
 		}
 		ul{
 			float: right;
@@ -102,42 +105,118 @@
 /* Album-listing
 =================================================================== */
 	#album-listing ul{
+		padding: 0;
+		margin: 0;
+		width: 100%;
+		@smallHeight:128px;
+		@smallWidth:128px;
 		li{			
 			display:block;
+			
 			float:left;
-			text-align:center;
-			margin: 15px;
+			width:@smallWidth;
+			height: @smallHeight;
 			position: relative;
 			overflow:hidden;
 				.transition(all,0.1s);
-			opacity:0.8;
+			img{.transition(all,0.1s);}
 			&:hover{
-				opacity:1;
+			
 				.controls{left:0;}
+				img{.transform(0,0.9,0,0);-webkit-filter: blur(5px);}
+				.info{.transform(0,1,0,0); opacity:1;-webkit-filter: blur(0px);}
 			}
 			.box-shadow();
 			img{display:block;}
 			span{display:block; color: white;}
-			.controls{
-				
+			.info{
 				.transition(all,0.1s);
+				-webkit-filter: blur(2px);
 				position: absolute;
-				top: 0;
-				left: -40px;
-				width: 40px;
-				height: 128px;
-				padding-top: 10px;
-				background: @green;
-				text-align: center;
-				a{
-					.text-shadow(0px,0px,10px,lighten(@green,20%));
-					color: white;
-					font-size: 25px;
+				opacity:0;
+				width: @smallWidth;
+				height: @smallHeight;
+				z-index:50;
+				top:0;
+				background: rgba(0,0,0,0.5);
+				display:table;
+				.transform(0,1.5,0,0);
+				div.info_holder{
+					display:table-cell;
+					text-align: center;
+					span{.text-shadow(0px,0px,10px,rgba(0,0,0,0.5));}
+					vertical-align:middle;
+					span.artist{font-size:13px;}
+					span.album-name{font-size:16px;}
+				}
+				
+				div.controls{
+					position: absolute;
+					top: 0;
+					left:0;
+					margin: 0;
+					padding: 0;
 					display:inline-block;
-					&:hover{color:#4e4e4e;}
-					&.icon-download{margin-top: 55px; font-size: 32px;}
+					text-align: justify;
+					width:@smallWidth;
+					padding:10px;
+					a{
+						&:hover{color:white;}
+						display:inline-block;
+						//margin: 10px;
+						color: #ccc;
+						font-size: 1.2em;
+						span{display:none;}
+						&.icon-love,&.icon-loved{font-size:1.3em;}
+						&.icon-download{font-size:1.5em; }
+					}
+					&:after{
+						content:"";
+						display:inline-block;
+						width:100%;
+					}
 				}
 			}
+			// .controls{
+				
+			// 	.transition(all,0.1s);
+			// 	position: absolute;
+			// 	top: 0;
+			// 	left: -40px;
+			// 	width: 40px;
+			// 	height: 128px;
+			// 	padding-top: 10px;
+			// 	background: @green;
+			// 	text-align: center;
+			// 	a{
+			// 		.text-shadow(0px,0px,10px,lighten(@green,20%));
+			// 		color: white;
+			// 		font-size: 25px;
+			// 		display:inline-block;
+			// 		&:hover{color:#4e4e4e;}
+			// 		&.icon-download{margin-top: 55px; font-size: 32px;}
+			// 	}
+			// }
 			
 		}
+	}
+	#album-listing li.huge{
+		@hugeWidth:512px;
+		@hugeHeight:512px;
+		height:@hugeHeight;
+		width:@hugeWidth;
+		.info{height:@hugeHeight; width:@hugeHeight;}
+		.info div.controls{width:@hugeWidth;}
+		.info div.info_holder span.artist{font-size:37px; font-weight: 300;}
+		.info div.info_holder span.album-name{font-size:80px; font-weight: 300}
+	}
+	#album-listing li.med{
+		@medWidth:256px;
+		@medHeight:256px;
+		height:@medHeight;
+		width:@medWidth;
+		.info{height:@medHeight; width:@medWidth;}
+		.info div.controls{width:@medWidth;}
+		.info div.info_holder span.artist{font-size:20px; font-weight: 300;}
+		.info div.info_holder span.album-name{font-size:38px; font-weight: 300}
 	}
