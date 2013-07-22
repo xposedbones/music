@@ -53,7 +53,8 @@ $(function($) {
 	            	$('.form_holder').slideToggle();
 	            });
 	        }
-	    }
+	    },
+	    
 	});
 	$("#menu a").click(function(e){
 		e.preventDefault();
