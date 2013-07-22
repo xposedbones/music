@@ -10,6 +10,7 @@
 	body{
 		background: url("../images/green-fibers.png");
 		font-family: 'Open Sans', sans-serif;
+		color:#2a2a2a;
 	}
 
 /* structure
@@ -29,6 +30,10 @@
 /* Header
 =================================================================== */
 	header{
+		position:fixed;
+		top: 0;
+		z-index:999;
+		width:100%;
 		height: 50px;
 		.transition(all,0.1s);
 		&.uploading{
@@ -42,11 +47,13 @@
 		.quick-gradient(top,0.2);
 		#upload{
 			cursor:pointer;
-			line-height: 50px;
+			line-height: 45px;
 			display:block;
 			float: left;
 			margin-left: 20px;
 			padding-left: 50px;
+			font-weight: 600;
+			font-size: 14px;
 			font-family: 'Open Sans', sans-serif;
 			.icon-upload:before{
 				color: #aaa;
@@ -63,7 +70,7 @@
 			margin: 0;
 			margin-right: 20px;
 
-			li{ display: inline-block; line-height: 50px}
+			li{ display: block; float:left;line-height: 47px}
 		}
 		.form_holder{
 			display:none;
@@ -100,8 +107,48 @@
 
 		}
 		.bar{height:5px; z-index:11; background: @green;}
+		ul#menu{
+			li a{
+				color: #777;
+				font-size:13px;
+				display:block;
+				border-right:1px solid #ccc;
+				border-left:1px solid #fff;
+				
+				font-weight: 600;
+				&:hover{color: #777; background: #ddd; .box-shadow-in(0px,1px,10px,0,0.2);}
+				padding: 0px 10px;
+
+			}	
+		}
+	}
+	#content{
+		padding-top:50px;
 	}
 
+/* Modules
+=================================================================== */
+	
+	.module{
+		margin: 25px;
+		background: white;
+		.border-radius(10px);
+		overflow: hidden;
+		
+		h1.pageTitle{
+			display:block;
+			padding:5px 10px;
+			margin: 0;
+			
+			margin-bottom:10px;
+			font-size: 20px;
+			font-weight: 400;
+			background: #fafafa;
+			.text-shadow(0px,1px,2px,#fff);
+			.quick-gradient(top,0.3);
+			border-bottom:1px solid black;
+		}
+	}
 /* Album-listing
 =================================================================== */
 	#album-listing ul{

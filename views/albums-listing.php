@@ -1,6 +1,6 @@
 <section id="album-listing">
 	<ul class="clearfix">
-	<?php for ($i=0; $i < 10; $i++): ?>
+	
 		<li class="huge">
 			<img src="http://0.static.wix.com/media/cec8b8_bcbae9b705b89190a82a0dd200a03348.jpg_512" alt="">
 			<div class="info">
@@ -222,7 +222,7 @@
 			</div>
 			
 		</li>
-<?php endfor; ?>
+
 		
 	</ul>
 </section>

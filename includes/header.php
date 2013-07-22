@@ -30,7 +30,7 @@ if(!class_exists("Bd")){
 	<ul id="menu">
 		<li><a href="test.php">My stuff</a></li>
 		<li><a href="albums-listing.php">Browse</a></li>
-		<li><a href="#">Meh</a></li>
+		<li><a href="testapi.php">Test API</a></li>
 	</ul>
 </header>
 <div id="content">

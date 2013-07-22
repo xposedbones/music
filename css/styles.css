@@ -448,6 +448,7 @@ you can use the generic selector below, but it's slower:
 body {
   background: url("../images/green-fibers.png");
   font-family: 'Open Sans', sans-serif;
+  color: #2a2a2a;
 }
 /* structure
 =================================================================== */
@@ -465,6 +466,10 @@ a {
 /* Header
 =================================================================== */
 header {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  width: 100%;
   height: 50px;
   -webkit-transition: all 0.1s;
   -moz-transition: all 0.1s;
@@ -499,11 +504,13 @@ header a {
 }
 header #upload {
   cursor: pointer;
-  line-height: 50px;
+  line-height: 45px;
   display: block;
   float: left;
   margin-left: 20px;
   padding-left: 50px;
+  font-weight: 600;
+  font-size: 14px;
   font-family: 'Open Sans', sans-serif;
 }
 header #upload .icon-upload:before {
@@ -523,8 +530,9 @@ header ul {
   margin-right: 20px;
 }
 header ul li {
-  display: inline-block;
-  line-height: 50px;
+  display: block;
+  float: left;
+  line-height: 47px;
 }
 header .form_holder {
   display: none;
@@ -572,6 +580,55 @@ header .bar {
   height: 5px;
   z-index: 11;
   background: #6cf100;
+}
+header ul#menu li a {
+  color: #777;
+  font-size: 13px;
+  display: block;
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #fff;
+  font-weight: 600;
+  padding: 0px 10px;
+}
+header ul#menu li a:hover {
+  color: #777;
+  background: #ddd;
+  -webkit-box-shadow: inset 0px 1px 10px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: inset 0px 1px 10px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0px 1px 10px 0 rgba(0, 0, 0, 0.2);
+}
+#content {
+  padding-top: 50px;
+}
+/* Modules
+=================================================================== */
+.module {
+  margin: 25px;
+  background: white;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.module h1.pageTitle {
+  display: block;
+  padding: 5px 10px;
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 400;
+  background: #fafafa;
+  text-shadow: 0px 1px 2px #ffffff;
+  filter: dropshadow(color=#ffffff, offx=0px, offy=1px);
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+  background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+  background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+  border-bottom: 1px solid black;
 }
 /* Album-listing
 =================================================================== */
