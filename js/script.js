@@ -29,9 +29,10 @@ $(function($) {
 	    progressall: function (e, data) {
 	        var progress = parseInt(data.loaded / data.total * 100, 10);
 	        $('.progress .bar').css(
-	            'width',
+	            'height',
 	            progress + '%'
 	        );
+	        $("#upload .upload-progress").text('Uploading... ' + progress + ' %');
 	    },
 	    add: function (e, data) {
 	        var goUpload = true;
@@ -45,11 +46,12 @@ $(function($) {
 	        if (goUpload == true) {
 	            //data.submit();
 	            $("#start").click(function(e){
+
 	            	e.preventDefault();
 	            	data.submit();
-	            	$("#upload").html('<i class="icon-upload"></i> Uploading... ');
-	            	$("header").addClass("uploading");
-	            	$(".fileupload-progress").slideDown();
+	            	
+	            	//$("header").addClass("uploading");
+	            	//$(".fileupload-progress").slideDown();
 	            	$('.form_holder').slideToggle();
 	            });
 	        }

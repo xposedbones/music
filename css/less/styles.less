@@ -30,6 +30,7 @@
 /* Header
 =================================================================== */
 	header{
+		@headerColor:#fafafa;
 		position:fixed;
 		top: 0;
 		z-index:999;
@@ -42,9 +43,9 @@
 			#upload,ul li{line-height: 45px;}
 		}
 		text-align: justify;
-		background: #fafafa;
-		a{ color: #444; .text-shadow(0px,1px,0px,white)}
-		.quick-gradient(top,0.2);
+		background: @headerColor;
+		a{ color: #444;}
+		//.quick-gradient(top,0.2);
 		#upload{
 			cursor:pointer;
 			line-height: 45px;
@@ -55,15 +56,16 @@
 			font-weight: 600;
 			font-size: 14px;
 			font-family: 'Open Sans', sans-serif;
+			position: relative;
 			.icon-upload:before{
-				color: #aaa;
+				color: @headerColor;
 				font-size: 40px;
-				.text-shadow(0px, 1px, 0px, #f0f0f0);
+				
 				position: absolute;
-				left: 20px;
+				left: 00px;
 			}
 			
-			&:hover i.icon-upload:before{color: #777;}
+			&:hover .fileupload-progress{background: #777;}
 		}
 		ul{
 			float: right;
@@ -99,14 +101,15 @@
 		.fileupload-progress{
 			position: absolute;
 			z-index: 50;
-			display:none;
-			width: 100%;
-			top: 0;
-			background: #dadada;
-			border-bottom:1px solid #d0d0d0;
+			display:block;
+			.size(40px,24px);
+			bottom:12px;
+			left:0;
+			background: #ccc;
+			z-index:-1;
 
 		}
-		.bar{height:5px; z-index:11; background: @green;}
+		.bar{width:100%; background: @green; display:inline-block; position: absolute;bottom:0;}
 		ul#menu{
 			li a{
 				color: #777;

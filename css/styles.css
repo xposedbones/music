@@ -410,12 +410,12 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
+.icon-upload,
 .icon-love,
 .icon-loved,
-.icon-upload,
-.icon-download,
 .icon-info,
-.icon-checkmark {
+.icon-checkmark,
+.icon-download {
   font-family: 'music';
   speak: none;
   font-style: normal;
@@ -425,23 +425,23 @@ you can use the generic selector below, but it's slower:
   line-height: 1;
   -webkit-font-smoothing: antialiased;
 }
-.icon-love:before {
+.icon-upload:before {
   content: "\e000";
 }
-.icon-loved:before {
+.icon-love:before {
   content: "\e001";
 }
-.icon-upload:before {
+.icon-loved:before {
   content: "\e002";
-}
-.icon-download:before {
-  content: "\e003";
 }
 .icon-info:before {
   content: "\e004";
 }
 .icon-checkmark:before {
   content: "\e005";
+}
+.icon-download:before {
+  content: "\e006";
 }
 /* body
 =================================================================== */
@@ -483,11 +483,6 @@ header {
   transition: all 0.1s linear;
   text-align: justify;
   background: #fafafa;
-  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
-  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
-  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
-  background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
-  background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
 }
 header.uploading {
   padding-top: 5px;
@@ -499,8 +494,6 @@ header.uploading ul li {
 }
 header a {
   color: #444;
-  text-shadow: 0px 1px 0px #ffffff;
-  filter: dropshadow(color=#ffffff, offx=0px, offy=1px);
 }
 header #upload {
   cursor: pointer;
@@ -512,17 +505,16 @@ header #upload {
   font-weight: 600;
   font-size: 14px;
   font-family: 'Open Sans', sans-serif;
+  position: relative;
 }
 header #upload .icon-upload:before {
-  color: #aaa;
+  color: #fafafa;
   font-size: 40px;
-  text-shadow: 0px 1px 0px #f0f0f0;
-  filter: dropshadow(color=#f0f0f0, offx=0px, offy=1px);
   position: absolute;
-  left: 20px;
+  left: 00px;
 }
-header #upload:hover i.icon-upload:before {
-  color: #777;
+header #upload:hover .fileupload-progress {
+  background: #777;
 }
 header ul {
   float: right;
@@ -570,16 +562,20 @@ header .form_holder #dropzone {
 header .fileupload-progress {
   position: absolute;
   z-index: 50;
-  display: none;
-  width: 100%;
-  top: 0;
-  background: #dadada;
-  border-bottom: 1px solid #d0d0d0;
+  display: block;
+  width: 40px;
+  height: 24px;
+  bottom: 12px;
+  left: 0;
+  background: #ccc;
+  z-index: -1;
 }
 header .bar {
-  height: 5px;
-  z-index: 11;
+  width: 100%;
   background: #6cf100;
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
 }
 header ul#menu li a {
   color: #777;

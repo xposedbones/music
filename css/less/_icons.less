@@ -34,7 +34,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-love, .icon-loved, .icon-upload, .icon-download, .icon-info, .icon-checkmark {
+.icon-upload, .icon-love, .icon-loved, .icon-info, .icon-checkmark, .icon-download {
 	font-family: 'music';
 	speak: none;
 	font-style: normal;
@@ -44,21 +44,21 @@ you can use the generic selector below, but it's slower:
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 }
-.icon-love:before {
+.icon-upload:before {
 	content: "\e000";
 }
-.icon-loved:before {
+.icon-love:before {
 	content: "\e001";
 }
-.icon-upload:before {
+.icon-loved:before {
 	content: "\e002";
-}
-.icon-download:before {
-	content: "\e003";
 }
 .icon-info:before {
 	content: "\e004";
 }
 .icon-checkmark:before {
 	content: "\e005";
+}
+.icon-download:before {
+	content: "\e006";
 }
