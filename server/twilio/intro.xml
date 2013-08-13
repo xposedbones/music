@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+		<Gather timeout="60" numDigits="1" method="GET" >
+	        <Say voice="alice" language="fr-CA">Bienvenue à Maire Académie !</Say>
+	        <Say voice="alice" language="fr-CA">Pour sauver Laval, faites le 1</Say>
+	        <Say voice="alice" language="fr-CA">Pour sauver Montréal, faites le 2</Say>
+	        <Say voice="alice" language="fr-CA">Pour sauver Longueuil, faites le 3</Say>
+	        <Say voice="alice" language="fr-CA">Pour sauver Québec, faites le 4</Say>
+	    </Gather>
+</Response>
+
