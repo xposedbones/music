@@ -482,7 +482,7 @@ header {
   -ms-transition: all 0.1s linear;
   transition: all 0.1s linear;
   text-align: justify;
-  background: #fafafa;
+  background: #ffffff;
 }
 header.uploading {
   padding-top: 5px;
@@ -508,7 +508,7 @@ header #upload {
   position: relative;
 }
 header #upload .icon-upload:before {
-  color: #fafafa;
+  color: #ffffff;
   font-size: 40px;
   position: absolute;
   left: 00px;
@@ -567,15 +567,16 @@ header .fileupload-progress {
   height: 24px;
   bottom: 12px;
   left: 0;
-  background: #ccc;
+  background: #ddd;
   z-index: -1;
 }
 header .bar {
   width: 100%;
-  background: #6cf100;
+  background: #f225ab;
   display: inline-block;
   position: absolute;
   bottom: 0;
+  height: 50% !important;
 }
 header ul#menu li a {
   color: #777;
