@@ -1,9 +1,4 @@
 $(function($) {
-	$("#album-listing ul").isotope({
-		   masonry: {
-			    columnWidth: 128
-			  }
-	});
 	
 	$("#upload").click(function(){
 		$('.form_holder').slideToggle();
@@ -71,6 +66,20 @@ $(function($) {
 			}
 		});
 	});*/
+
+	$("#jquery_jplayer_1").jPlayer({
+		ready: function (event) {
+			$(this).jPlayer("setMedia", {
+				m4a:"http://www.jplayer.org/audio/m4a/TSP-01-Cro_magnon_man.m4a",
+				oga:"http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg"
+			});
+		},
+		swfPath: "js",
+		supplied: "m4a, oga",
+		wmode: "window",
+		smoothPlayBar: true,
+		keyEnabled: true
+	});
 	
 	$('body').on('click','[data-action]', function(e){
 		var event_param = $(this).attr('data-action').split('|')
@@ -92,6 +101,15 @@ $(function($) {
 				}
 				Pages.loadPage('albums-listing', '#content', {
 					albums:albumsTest
+					}, function(){
+						$("#album-listing ul").isotope({
+						 masonryHorizontal: {
+						    rowHeight:128
+						   
+						  },masonry: {
+						    columnWidth: 128
+						  }
+						});
 				})
 				break;
 		}

@@ -82,6 +82,8 @@ html {
   /* 1 */
 
   -ms-text-size-adjust: 100%;
+  /* 2 */
+
   -webkit-text-size-adjust: 100%;
   /* 2 */
 
@@ -444,7 +446,7 @@ you can use the generic selector below, but it's slower:
 /* body
 =================================================================== */
 body {
-  background: ;
+  background: url("../images/green-fibers.png");
   font-family: 'Open Sans', sans-serif;
   color: #2a2a2a;
 }
@@ -595,6 +597,23 @@ header ul#menu li a:hover {
 #content {
   padding-top: 50px;
 }
+/* player
+=================================================================== */
+#jquery_jplayer_1 {
+  display: none;
+}
+#jp_container_1 {
+  width: 500px;
+  float: left;
+}
+.jp-progress {
+  height: 10px;
+  background: red;
+}
+.jp-play-bar {
+  height: 10px;
+  background: green;
+}
 /* Modules
 =================================================================== */
 .module {
@@ -653,6 +672,10 @@ header ul#menu li a:hover {
   -moz-box-shadow: none;
   box-shadow: none;
   color: ;
+}
+#album-listing ul li img {
+  width: 128px;
+  height: auto;
 }
 #album-listing ul li img {
   -webkit-transition: all 0.1s;
@@ -787,6 +810,10 @@ header ul#menu li a:hover {
   height: 512px;
   width: 512px;
 }
+#album-listing li.huge img {
+  width: 512px;
+  height: auto;
+}
 #album-listing li.huge .info {
   height: 512px;
   width: 512px;
@@ -805,6 +832,10 @@ header ul#menu li a:hover {
 #album-listing li.med {
   height: 256px;
   width: 256px;
+}
+#album-listing li.med img {
+  width: 256px;
+  height: auto;
 }
 #album-listing li.med .info {
   height: 256px;

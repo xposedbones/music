@@ -8,7 +8,7 @@
 /* body
 =================================================================== */
 	body{
-		background: ;//url("../images/green-fibers.png");
+		background: url("../images/green-fibers.png");
 		font-family: 'Open Sans', sans-serif;
 		color:#2a2a2a;
 	}
@@ -128,7 +128,21 @@
 	#content{
 		padding-top:50px;
 	}
-
+/* player
+=================================================================== */
+	#jquery_jplayer_1{display:none;}
+	#jp_container_1{
+		width:500px;
+		float:left;
+	}
+	.jp-progress{
+		height:10px;
+		background:red;
+	}
+	.jp-play-bar{
+		height:10px;
+		background:green;
+	}
 /* Modules
 =================================================================== */
 	
@@ -162,7 +176,7 @@
 		@smallWidth:128px;
 		li{			
 			display:block;
-			
+			img{width:@smallWidth; height:auto;}
 			float:left;
 			width:@smallWidth;
 			height: @smallHeight;
@@ -253,6 +267,7 @@
 	#album-listing li.huge{
 		@hugeWidth:512px;
 		@hugeHeight:512px;
+		img{width:@hugeWidth; height:auto;}
 		height:@hugeHeight;
 		width:@hugeWidth;
 		.info{height:@hugeHeight; width:@hugeHeight;}
@@ -263,6 +278,7 @@
 	#album-listing li.med{
 		@medWidth:256px;
 		@medHeight:256px;
+		img{width:@medHeight; height:auto;}
 		height:@medHeight;
 		width:@medWidth;
 		.info{height:@medHeight; width:@medWidth;}
