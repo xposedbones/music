@@ -148,12 +148,12 @@ App =
 
 		_handleHttpRequest: (req, res) ->
 
-				allowedHosts = ['www.maireacademie.ca', 'laval.maireacademie.ca', 'montreal.maireacademie.ca', 'longueuil.maireacademie.ca', 'quebec.maireacademie.ca', '342da8a6.ngrok.com', 'localhost'];
+				# allowedHosts = ['www.maireacademie.ca', 'laval.maireacademie.ca', 'montreal.maireacademie.ca', 'longueuil.maireacademie.ca', 'quebec.maireacademie.ca', '342da8a6.ngrok.com', 'localhost'];
 
-				if false && allowedHosts.indexOf(req.headers.host) == -1
-					res.setHeader 'Location', 'http://'+allowedHosts[0]
-					res.writeHead '302'
-					return res.end '';
+				# if false && allowedHosts.indexOf(req.headers.host) == -1
+				# 	res.setHeader 'Location', 'http://'+allowedHosts[0]
+				# 	res.writeHead '302'
+				# 	return res.end '';
 
 				file = req.url.split('?')[0];
 				file = if file == '/' then 'index.php' else file;

@@ -71,5 +71,20 @@ $(function($) {
 			}
 		});
 	});
+	var albumsTest = []
+	for(var i=0; i<30; ++i){
+		var types = ['', 'huge', 'med'];
+		var _type = Math.floor(Math.random()*types.length);
+		var album = {
+			type:types[_type],
+			image_url:'http://0.static.wix.com/media/cec8b8_bcbae9b705b89190a82a0dd200a03348.jpg_512',
+			artist:'Macklemore & Ryan Lewis',
+			name:'The Heist'
+		}
+		albumsTest.push(album)
+	}
+	Pages.loadPage('albums-listing', '#content', {
+		albums:albumsTest
+	})
 
 });
