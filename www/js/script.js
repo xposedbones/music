@@ -58,7 +58,7 @@ $(function($) {
 	    },
 	    
 	});
-	$("#menu a").click(function(e){
+	/*$("#menu a").click(function(e){
 		e.preventDefault();
 		var href=$(this).attr('href');
 		window.location.href = "#!/"+href;
@@ -70,21 +70,34 @@ $(function($) {
 				$("#content").html(response);
 			}
 		});
-	});
-	var albumsTest = []
-	for(var i=0; i<30; ++i){
-		var types = ['', 'huge', 'med'];
-		var _type = Math.floor(Math.random()*types.length);
-		var album = {
-			type:types[_type],
-			image_url:'http://0.static.wix.com/media/cec8b8_bcbae9b705b89190a82a0dd200a03348.jpg_512',
-			artist:'Macklemore & Ryan Lewis',
-			name:'The Heist'
+	});*/
+	
+	$('body').on('click','[data-action]', function(e){
+		var event_param = $(this).attr('data-action').split('|')
+		var event_type = event_param[0]
+
+		switch(event_type){
+			case 'albums-listing':
+				var albumsTest = []
+				for(var i=0; i<30; ++i){
+					var types = ['', 'huge', 'med'];
+					var _type = Math.floor(Math.random()*types.length);
+					var album = {
+						type:types[_type],
+						image_url:'http://0.static.wix.com/media/cec8b8_bcbae9b705b89190a82a0dd200a03348.jpg_512',
+						artist:'Macklemore & Ryan Lewis',
+						name:'The Heist'
+					}
+					albumsTest.push(album)
+				}
+				Pages.loadPage('albums-listing', '#content', {
+					albums:albumsTest
+				})
+				break;
 		}
-		albumsTest.push(album)
-	}
-	Pages.loadPage('albums-listing', '#content', {
-		albums:albumsTest
 	})
+	
+	$('a[data-action="albums-listing"]').click();
+	
 
 });
