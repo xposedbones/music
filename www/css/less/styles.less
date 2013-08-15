@@ -132,17 +132,65 @@
 =================================================================== */
 	#jquery_jplayer_1{display:none;}
 	#jp_container_1{
-		width:500px;
+		width:75%;
 		float:left;
+		margin: 0 auto;
 	}
 	.jp-progress{
 		height:10px;
-		background:red;
+		width:50%;
+		margin-left:200px;
+		display:inline-block;
+		text-align:center;
+		background:#ddd;
+		.box-shadow-in(0px, 1px, 4px, 0, 0.5);
+		.border-radius(10px;)
+
 	}
 	.jp-play-bar{
 		height:10px;
-		background:green;
+		background:@mainColor;
+		.border-radius(10px;);
+		position:relative;
+		.box-shadow-in(0px, 1px, 4px, 0, 0.5);
+		overflow:visible !important;
+		z-index:99;
+		&:after{
+			content:"";
+			.square(18px);
+			.border-radius(100%);
+			background:blue;
+			position:absolute;
+			right:0;
+			top:-4px;
+			background: #fafafa;
+			.quick-gradient(top,0.2);
+
+			.box-shadow-in-white(0px,0px,0px,2px,0.5);
+		}
 	}
+	.jp-controls{float:none;}
+	.jp-time-holder{width:80%; height:20px; margin-left:200px;}
+	.jp-current-time{float:left;}
+	.jp-duration{float:right;}
+
+	.jp-controls [class*="icon"]{
+		font-size: 40px;
+	}
+	.jp-volume-bar{
+		width:100px;
+		height:10px;
+		background:#ccc;
+		.border-radius(10px;);
+		position:relative;
+		.box-shadow-in(0px, 1px, 4px, 0, 0.5);
+		div{
+			height:10px;
+		background:@mainColor;
+		.border-radius(10px;);
+		}
+	}
+
 /* Modules
 =================================================================== */
 	
