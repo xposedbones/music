@@ -21,7 +21,7 @@
 		</i> <span class="upload-progress">Upload</span> </a>
 	
 	<div class="form_holder">
-		<form id="fileupload" action="#" method="POST" enctype="multipart/form-data">
+		<form id="fileupload" action="/upload/" method="POST" enctype="multipart/form-data">
 		    <div class="fileupload-loading"></div>
 		    <div id="dropzone" class="well fileinput-button"><span class="dropzone dropzone-text">Glissez votre fichier ici</span>  <input type="file" name="files[]" multiple></div>
 		    <button id="start">asdasd</button>
@@ -88,7 +88,11 @@
 	<script src="/js/libs/filesupload/js/vendor/jquery.ui.widget.js"></script>
 	<script src="/js/libs/filesupload/js/jquery.fileupload.js"></script>
 	<script src="/js/libs/handlebars.js"></script>
-	<script src="js/pages.js"></script>
-	<script src="js/script.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/js/app.js"></script>
+	<script src="/js/pages.js"></script>
+	<script src="/js/cookie.js"></script>
+	<script src="/js/socket.js"></script>
+	<script src="/js/script.js"></script>
 </body>
 </html>

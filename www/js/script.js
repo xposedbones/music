@@ -1,5 +1,6 @@
 $(function($) {
-	
+	app.init();
+
 	$("#upload").click(function(){
 		$('.form_holder').slideToggle();
 	});
@@ -99,18 +100,24 @@ $(function($) {
 					}
 					albumsTest.push(album)
 				}
-				Pages.loadPage('albums-listing', '#content', {
-					albums:albumsTest
-					}, function(){
-						$("#album-listing ul").isotope({
-						 masonryHorizontal: {
-						    rowHeight:128
-						   
-						  },masonry: {
-						    columnWidth: 128
-						  }
-						});
-				})
+
+				app.Socket.socket.emit('getTrendingAlbums', function(albums){
+					console.log('console moi', albums)
+					Pages.loadPage('albums-listing', '#content', {
+						albums:albums
+						}, function(){
+							$("#album-listing ul").isotope({
+							 masonryHorizontal: {
+							    rowHeight:128
+							   
+							  },masonry: {
+							    columnWidth: 128
+							  }
+							});
+					})
+				});
+
+					
 				break;
 		}
 	})

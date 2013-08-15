@@ -12,11 +12,49 @@ App =
 			redisDatabase: 2
 			wwwPath:'./../www/'
 
+		tempUserSessions:
+			session1:
+				name:'Alex',
+				id: 'test'
+			whatever:
+				name:'BENOIT',
+				id: 'test'
+			whenever:
+				name:'Alex',
+				id: 'test'
+
+		trendingAlbums:[
+			{
+				type:'med',
+				image_url:'http://0.static.wix.com/media/cec8b8_bcbae9b705b89190a82a0dd200a03348.jpg_512',
+				artist:'Macklemore & Ryan Lewis',
+				name:'The Heist'
+			},
+			{
+				type:'',
+				image_url:"http://userserve-ak.last.fm/serve/_/88057565/Believe.png",
+				artist:'Cher',
+				name:'Believe'
+			},
+			{
+				type:'huge',
+				image_url:"http://userserve-ak.last.fm/serve/_/90656285/Gold+PNG.png",
+				artist:'Sir Sly',
+				name:'Gold [ep]'
+			},
+			{
+				type:'med',
+				image_url:"http://userserve-ak.last.fm/serve/_/84554553/Enema+of+the+State+6a00e54f9153e08833016766c18afa.jpg",
+				artist:'Blink 182',
+				name:'Enema Of The State'
+			},
+
+		]
 
 		init: (config)->
 				# Load libs only on init
-				if config?
-						@config = @_mergeOptions @config config
+				#if config?
+				#		@config = @_mergeOptions @config config
 
 				@fs = require('fs');
 				express = require('express')
@@ -29,9 +67,14 @@ App =
 				@express.get '/api/*', @_handleAPICalls
 				@express.post '/api/*', @_handleAPICalls
 				@express.get '/*', @_handleHttpRequest
+				#@express.post '/upload/', @_handleUpload
 
-				@express.use express.bodyParser()
-				@express.use express.cookieSession()
+				@express.post('/upload/', (req, res) ->
+				    console.log(JSON.stringify(req.files));
+				);
+
+				@express.use express.bodyParser({uploadDir:'/tmp/'});
+				#@express.use express.cookieSession()
 
 				@express.use (err, req, res, next)->
 				  console.error(err.stack);
@@ -40,7 +83,19 @@ App =
 				@redisWorker = @redis.createClient(App.config.redisPort, App.config.redisHost)
 				
 				@io.on 'connection', (socket)->
-					console.log 'connected'
+					socket.on 'authenticate', (data)->
+						if App.tempUserSessions[data]? #FIX ME, HACK, NOT FINAL
+							socket.emit 'userData', App.tempUserSessions[data];
+
+					socket.on 'getTrendingAlbums', (callback)->
+						callback(App.trendingAlbums);
+
+
+		_handleUpload: (req, res) ->
+			console.log req;
+			if req.files?
+				for key of req.files
+					console.log req.files
 
 
 		_handleAPICalls: (req, res) ->
@@ -71,34 +126,6 @@ App =
 				else
 					res.writeHead '404'
 					res.end 'Module ' + module + ' not found'
-
-
-		_handleTwilioCall: (method, req,  res) ->
-			switch method
-				when 'call'
-					console.log 'call'
-					file = App.config.twilio.responses.intro
-					if req.query.Digits?
-
-						cities = [null, 'laval', 'montreal', 'longueuil', 'quebec'];
-						voteData = 
-							identity: req.query.From
-							time: new Date().getTime()
-							type:'call'
-
-						App._registerVote(cities[req.query.Digits], voteData)
-						file = App.config.twilio.responses.outro
-
-					App.fs.readFile file, (err, data)->
-						if(err)
-							res.writeHead '500'
-							return res.end('Error loading xml file')
-						res.setHeader 'Content-Type', 'text/xml'
-						res.writeHead '200'
-						res.end data;
-				else
-					res.writeHead '404'
-					res.end 'Method not found'
 
 
 		_registerVote: (city, data) ->
@@ -133,18 +160,7 @@ App =
 			else
 				return App.redisWorker.zadd 'maireacademie:votes:fb:'+city, new Date().getTime(), JSON.stringify data;
 
-		_updateCityStats: (city)->
-			App.redisWorker.zcard 'maireacademie:votes:'+city, (err, callVotes)->
-				request = require("request");
-				request 'http://api.facebook.com/restserver.php?method=links.getStats&urls=http://'+city+'.maireacademie.ca/&format=json', (error, response, body)->
-					data = JSON.parse(body);
-					App.stats[city].votes = callVotes
-					App.stats[city].likes = data[0].like_count
-					App.stats[city].total = callVotes + data[0].like_count
-
-					App.io.sockets.emit 'stats', {city:city, stats:App.stats[city]};
-
-			#http://api.facebook.com/restserver.php?method=links.getStats&urls=http://montreal.maireacademie.ca/&format=json
+		
 
 		_handleHttpRequest: (req, res) ->
 
