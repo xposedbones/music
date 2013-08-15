@@ -34,7 +34,8 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-upload, .icon-love, .icon-loved, .icon-info, .icon-checkmark, .icon-download {
+
+.icon-play, .icon-pause, .icon-stop, .icon-volume-off, .icon-volume-down, .icon-volume-up, .icon-upload, .icon-love, .icon-loved, .icon-download, .icon-info, .icon-checkmark, .icon-repeat {
 	font-family: 'music';
 	speak: none;
 	font-style: normal;
@@ -44,6 +45,24 @@ you can use the generic selector below, but it's slower:
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 }
+.icon-play:before {
+	content: "\e003";
+}
+.icon-pause:before {
+	content: "\e004";
+}
+.icon-stop:before {
+	content: "\e005";
+}
+.icon-volume-off:before {
+	content: "\f026";
+}
+.icon-volume-down:before {
+	content: "\f027";
+}
+.icon-volume-up:before {
+	content: "\f028";
+}
 .icon-upload:before {
 	content: "\e000";
 }
@@ -51,14 +70,18 @@ you can use the generic selector below, but it's slower:
 	content: "\e001";
 }
 .icon-loved:before {
-	content: "\e002";
-}
-.icon-info:before {
-	content: "\e004";
-}
-.icon-checkmark:before {
-	content: "\e005";
-}
-.icon-download:before {
 	content: "\e006";
 }
+.icon-download:before {
+	content: "\e007";
+}
+.icon-info:before {
+	content: "\e008";
+}
+.icon-checkmark:before {
+	content: "\e009";
+}
+.icon-repeat:before {
+	content: "\e01b";
+}
+
